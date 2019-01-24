@@ -1,0 +1,10 @@
+{
+  "name": "pattern-drupal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-webserver": "^0.9.1"
+  }
+}
