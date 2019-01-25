@@ -1,0 +1,20 @@
+{
+  "root": "./public",
+  "patternlab": {
+    "styleguide": {
+      "files": [
+        "./core/styleguide/**"
+      ],
+      "dest": "./public/styleguide/"
+    },
+    "files": [
+      "./source/_patterns/**/*.twig",
+      "./source/_patterns/**/*.json",
+      "./source/_patterns/**/*.yaml",
+      "./source/_patterns/**/*.yml",
+      "./source/_data/*.json",
+      "./source/_data/*.yaml",
+      "./source/_data/*.yml"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{% set component_class = 'custom-paragraph' %}
+
+<div {{ attributes.addClass(components_class) }}>
+  <h4 class="{{ component_class ~ '__title' }}">{{ title }}</h4>
+  <div class="{{ component_class ~ '__content' }}">{{ content }}</div>
+</div>
