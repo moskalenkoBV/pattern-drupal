@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+
+    {% for item in styles %}
+      {% if item.href %}
+        <link href="{{ item.href }}" rel="stylesheet">
+      {% endif %}
+    {% endfor %}
+    
+    <!-- Begin Pattern Lab (Required for Pattern Lab to run properly) -->
+    {{ patternLabHead | raw }}
+    <!-- End Pattern Lab -->
+
+    {% for item in scripts.header %}
+      {% if item.src %}
+        <script src={{ item.src }} {{ item.async ? 'async' }} {{ item.defer ? 'defer' }}></script>
+      {% endif %}
+    {% endfor %}
+
+  </head>
+  <body>

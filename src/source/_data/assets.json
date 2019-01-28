@@ -1,0 +1,18 @@
+{
+  "styles": [
+    {
+      "href": "../../assets/css/app.css"
+    }
+  ],
+  "scripts": {
+    "header": [
+      {}
+    ],
+    "footer": [
+      {
+        "src": "../../assets/js/behaviors.js",
+        "async": true
+      }
+    ]
+  }
+}

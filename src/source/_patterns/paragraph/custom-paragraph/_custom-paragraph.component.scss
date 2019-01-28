@@ -3,13 +3,14 @@
   font-size: 14px;
   line-height: 1.38;
   color: #000;
+  display: flex;
 
   &__title {
-    margin: 0;
+    margin: 80px;
     font-size: 2em;
   }
 
   &__content {
-    margin-top: 20px;
+    margin-top: 30px;
   }
 }

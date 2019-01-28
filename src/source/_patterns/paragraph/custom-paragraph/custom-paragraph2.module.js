@@ -1,0 +1,1 @@
+const abs = 32;

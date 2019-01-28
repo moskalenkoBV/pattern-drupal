@@ -1,0 +1,12 @@
+{
+  "title" : "Component Library",
+  "isFront": true,
+  "theme_path": "../..",
+  "drupalSettings": {
+    "a": 25,
+    "b": 35
+  },
+  "attributes": {
+    "Attribute()": {}
+  }
+}

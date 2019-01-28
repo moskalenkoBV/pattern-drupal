@@ -1,0 +1,138 @@
+{
+  "root": "./public/",
+  "configs": {
+    "src": [
+      "./src/source/_patterns/**/*.+(json|yaml|yml)",
+      "./src/source/_data/*.+(yml|yaml|json)"
+    ]
+  },
+  "templates": {
+    "src": [
+      "./src/source/_patterns/**/*.twig",
+      "./src/source/_meta/**/*.twig"
+    ]
+  },
+  "styleguide": {
+    "src": [
+      "./core/styleguide/**"
+    ],
+    "dest": [
+      "./public/styleguide/"
+    ]
+  },
+  "styles": {
+    "global": {
+      "app": {
+        "src": [
+          "./src/assets/scss/app.scss"
+        ]
+      },
+      "ckeditor": {
+        "src": [
+          "./src/assets/scss/ckeditor.scss"
+        ]
+      },
+      "admin": {
+        "src": [
+          "./src/assets/scss/admin.scss"
+        ]
+      },
+      "all": {
+        "src": [
+          "./src/assets/scss/*.scss"
+        ],
+        "dest": [
+          "./public/assets/css/"
+        ]
+      },
+      "other": {
+        "src": [
+          "./src/assets/scss/*/**/*.scss"
+        ]
+      }
+    },
+    "components": {
+      "admin": {
+        "src": [
+          "./src/source/_patterns/**/*.admin.scss"
+        ]
+      },
+      "ckeditor": {
+        "src": [
+          "./src/source/_patterns/**/*.ckeditor.scss"
+        ] 
+      },
+      "component": {
+        "src": [
+          "./src/source/_patterns/**/*.component.scss"
+        ]
+      },
+      "style": {
+        "src": [
+          "./src/source/_patterns/**/*.style.scss"
+        ]
+      }
+    }
+  },
+  "scripts": {
+    "global": {
+      "src": [
+        "./src/assets/js/**/*.js"
+      ],
+      "dest": [
+        "./public/assets/js/"
+      ]
+    },
+    "behaviors": {
+      "src": [
+        "./src/source/_patterns/**/*.behavior.js"
+      ],
+      "dest": [
+        "./public/assets/js/"
+      ]
+    },
+    "modules": {
+      "src": [
+        "./src/source/_patterns/**/*.module.js"
+      ],
+      "dest": [
+        "./public/assets/js/modules/"
+      ]
+    },
+    "nodeModules": {
+      "src": [
+        "./node_modules/jquery/dist/jquery.js",
+        "./node_modules/slick-carousel/slick/slick.js"
+      ],
+      "dest": [
+        "./public/assets/js/node_modules/"
+      ]
+    }
+  },
+  "sprites": {
+    "svg": {
+      "src": [
+        "./src/assets/sprites/svg/*.svg"
+      ],
+      "dest": [
+        "./public/assets/sprites/"
+      ]
+    }
+  },
+  "images": {
+    "src": [
+      "./src/assets/images/**/*.+(png|jpg|jpeg|gif)"
+    ],
+    "dest": [
+      "./public/assets/images/"
+    ]
+  },
+  "fonts": {
+    "src": [
+      "./src/assets/fonts/**/*.+(eot|woff|woff2|ttf|otf)"
+    ],
+    "dest": [
+      "./public/assets/fonts/"
+    ]
+  }
+}

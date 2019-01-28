@@ -1,0 +1,13 @@
+  
+  <!--DO NOT REMOVE-->
+  {{ patternLabFoot | raw }}
+
+  <script>var drupalSettings = {{ drupalSettings|json_encode() }}</script>
+  
+  {% for item in scripts.footer %}
+    {% if item.src %}
+      <script src={{ item.src }} {{ item.async ? 'async' }} {{ item.defer ? 'defer' }}></script>
+    {% endif %}
+  {% endfor %}
+  </body>
+</html>

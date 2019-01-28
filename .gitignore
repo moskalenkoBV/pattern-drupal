@@ -6,4 +6,4 @@ vendor/*
 source/styleguide/*
 config/*.json
 node_modules
-
+yarn-error.log

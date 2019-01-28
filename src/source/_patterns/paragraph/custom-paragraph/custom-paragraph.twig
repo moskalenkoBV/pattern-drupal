@@ -1,6 +1,10 @@
 {% set component_class = 'custom-paragraph' %}
 
-<div {{ attributes.addClass(components_class) }}>
+<div {{ attributes.addClass(component_class) }}>
   <h4 class="{{ component_class ~ '__title' }}">{{ title }}</h4>
   <div class="{{ component_class ~ '__content' }}">{{ content }}</div>
+  <div>Customa</div>
+  <svg>
+    <use xlink:href="{{ theme_path }}/assets/sprites/symbol/svg/sprite.symbol.svg#close"></use>
+  </svg>
 </div>

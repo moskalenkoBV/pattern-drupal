@@ -1,0 +1,1 @@
+const kirill = "Andrey"

@@ -1,0 +1,8 @@
+{
+  "title": "Custom Paragraphs Titles",
+  "content": "<p>Custom Paragraph Contenst</p>",
+  "drupalSettings": {
+    "a": "333",
+    "b": "23"
+  }
+}
