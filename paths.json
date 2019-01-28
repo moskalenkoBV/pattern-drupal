@@ -83,6 +83,11 @@
         "./public/assets/js/"
       ]
     },
+    "component": {
+      "src": [
+        "./src/source/_patterns/**/*.js"
+      ]
+    },
     "behaviors": {
       "src": [
         "./src/source/_patterns/**/*.behavior.js"

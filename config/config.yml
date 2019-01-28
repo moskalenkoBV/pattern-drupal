@@ -31,8 +31,8 @@ ishControlsHide:
     - views-code
     - views-new
     - views-all
-styleguideKit: pattern-lab\styleguidekit-twig-default
-styleguideKitPath: 'vendor\pattern-lab\styleguidekit-twig-default'
+styleguideKit: pattern-lab/styleguidekit-twig-default
+styleguideKitPath: 'vendor/pattern-lab/styleguidekit-twig-default'
 lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}'
 lineageMatchKey: 3
 patternExtension: twig

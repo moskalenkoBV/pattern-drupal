@@ -1,16 +1,21 @@
 {
   "extends": [
-    "airbnb",
-    "prettier"
+    "airbnb"
   ],
-  "plugins": [
-    "prettier"
-  ],
+  "parser": "esprima",
   "rules": {
-    "quotes": 1,
-    "prettier/prettier": ["error"]
+    "semi": [2, "never"],
+    "linebreak-style": [2, "unix"],
+    "quotes": [2, "single"],
+    "no-var": 2,
+    "array-bracket-newline": [2, { "multiline": true, "minItems": 2 }],
+    "max-len": [2, { "code": 120, "tabWidth": 2 }],
+    "no-multi-assign": 2
   },
   "env": {
     "es6": true
+  },
+  "globals": {
+    "$": true
   }
 }

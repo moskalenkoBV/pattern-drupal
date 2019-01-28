@@ -5,7 +5,7 @@ const clean = require('gulp-clean')
 const browserSync = require('browser-sync')
 const shell = require('gulp-shell')
 const sass = require('gulp-sass')
-const postCSS = require('gulp-postcss')
+const postCSS = require("gulp-postcss")
 const autoprefixer = require('autoprefixer')
 const sassGlob = require('gulp-sass-glob')
 const concat = require('gulp-concat')
@@ -21,7 +21,7 @@ const eslint = require('gulp-eslint')
 const paths = require('./paths.json')
 
 /* Custom Gulp Utils */
-const customUtils = require('./gulpCustomUtils');
+const customUtils = require('./gulpCustomUtils')
 
 /* Gulp Tasks */
 const tasks = {
@@ -128,6 +128,12 @@ const tasks = {
     gulp
       .src(src)
       .pipe(clean({ read: false }))
+  ),
+  checkEslint: () => (
+    gulp
+      .src([...paths.scripts.component.src, ...paths.scripts.global.src])
+      .pipe(eslint())
+      .pipe(eslint.format())
   )
 }
 
@@ -243,4 +249,8 @@ gulp.task('build', gulp.series(
   tasks.clean.bind(null, paths.root), 
   buildPatternLab, 
   buildAssets
+))
+
+gulp.task('eslint', gulp.series(
+  tasks.checkEslint
 ))
