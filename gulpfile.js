@@ -134,6 +134,7 @@ const tasks = {
       .src([...paths.scripts.component.src, ...paths.scripts.global.src])
       .pipe(eslint())
       .pipe(eslint.format())
+      .pipe(eslint.failAfterError())
   )
 }
 
