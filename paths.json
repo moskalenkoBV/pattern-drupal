@@ -37,7 +37,7 @@
           "./src/assets/scss/admin.scss"
         ]
       },
-      "all": {
+      "main": {
         "src": [
           "./src/assets/scss/*.scss"
         ],
@@ -45,9 +45,14 @@
           "./public/assets/css/"
         ]
       },
-      "other": {
+      "utils": {
         "src": [
           "./src/assets/scss/*/**/*.scss"
+        ]
+      },
+      "all": {
+        "src": [
+          "./src/assets/scss/**/*.scss"
         ]
       }
     },
@@ -70,6 +75,11 @@
       "style": {
         "src": [
           "./src/source/_patterns/**/*.style.scss"
+        ]
+      },
+      "all": {
+        "src": [
+          "./src/source/_patterns/**/*.scss"
         ]
       }
     }

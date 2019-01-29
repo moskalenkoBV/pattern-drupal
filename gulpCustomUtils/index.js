@@ -1,4 +1,7 @@
+const watchArrayOfFiles = require('./watchArrayOfFiles')
+const babelJSParams = require('./babelJSParams')
+
 module.exports = {
-  watchArrayOfFiles: require('./watchArrayOfFiles'),
-  babelJSParams: require('./babelJSParams')
+  watchArrayOfFiles,
+  babelJSParams,
 }

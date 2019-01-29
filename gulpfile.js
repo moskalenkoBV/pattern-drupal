@@ -49,7 +49,7 @@ const tasks = {
     const params = {
       src: './src/assets/scss/*.scss',
       dest: './public/assets/css/',
-      inputParams,
+      ...inputParams,
     }
 
     return (
@@ -79,7 +79,7 @@ const tasks = {
       dest: './public/assets/js/',
       isMerge: false,
       filename: 'scripts.js',
-      inputParams,
+      ...inputParams,
     }
 
     return (
@@ -167,10 +167,16 @@ const watch = () => {
       ...paths.styles.global.app.src,
     ],
     gulp,
-    tasks.compileScss.bind(null, {
-      src: paths.styles.global.app.src,
-      dest: paths.styles.global.all.dest,
-    }),
+    gulp.series(
+      tasks.compileScss.bind(null, {
+        src: paths.styles.global.app.src,
+        dest: paths.styles.global.main.dest,
+      }),
+      tasks.checkSasslint.bind(null, [
+        ...paths.styles.global.app.src,
+        ...paths.styles.components.component.src,
+      ]),
+    ),
   )
 
   // Ckeditor, watch changes in ckeditor.scss and *.ckeditor.scss files
@@ -180,10 +186,16 @@ const watch = () => {
       ...paths.styles.global.ckeditor.src,
     ],
     gulp,
-    tasks.compileScss.bind(null, {
-      src: paths.styles.global.ckeditor.src,
-      dest: paths.styles.global.all.dest,
-    }),
+    gulp.series(
+      tasks.compileScss.bind(null, {
+        src: paths.styles.global.ckeditor.src,
+        dest: paths.styles.global.main.dest,
+      }),
+      tasks.checkSasslint.bind(null, [
+        ...paths.styles.global.ckeditor.src,
+        ...paths.styles.components.ckeditor.src,
+      ]),
+    ),
   )
 
   // Admin, watch changes in admin.scss and *.admin.scss files
@@ -193,23 +205,35 @@ const watch = () => {
       ...paths.styles.global.admin.src,
     ],
     gulp,
-    tasks.compileScss.bind(null, {
-      src: paths.styles.global.admin.src,
-      dest: paths.styles.global.all.dest,
-    }),
+    gulp.series(
+      tasks.compileScss.bind(null, {
+        src: paths.styles.global.admin.src,
+        dest: paths.styles.global.main.dest,
+      }),
+      tasks.checkSasslint.bind(null, [
+        ...paths.styles.global.admin.src,
+        ...paths.styles.components.admin.src,
+      ]),
+    ),
   )
 
   // Rebuild All SCSS if something happens with SCSS utils, general styles of component ..., etc.
   customUtils.watchArrayOfFiles(
     [
-      ...paths.styles.global.other.src,
-      ...paths.styles.component.style.src,
+      ...paths.styles.global.utils.src,
+      ...paths.styles.components.style.src,
     ],
     gulp,
-    tasks.compileScss.bind(null, {
-      src: paths.styles.global.all.src,
-      dest: paths.styles.global.all.dest,
-    }),
+    gulp.series(
+      tasks.compileScss.bind(null, {
+        src: paths.styles.global.main.src,
+        dest: paths.styles.global.main.dest,
+      }),
+      tasks.checkSasslint.bind(null, [
+        ...paths.styles.global.all.src,
+        ...paths.styles.components.all.src,
+      ]),
+    ),
   )
 
   /* Babel JS */
@@ -289,22 +313,14 @@ gulp.task('eslint', gulp.series(
 gulp.task('sasslint', gulp.series(
   tasks.checkSasslint.bind(null, [
     ...paths.styles.global.all.src,
-    ...paths.styles.global.other.src,
-    ...paths.styles.components.component.src,
-    ...paths.styles.components.admin.src,
-    ...paths.styles.components.ckeditor.src,
-    ...paths.styles.components.style.src,
-  ]),
+    ...paths.styles.components.all.src,
+  ], true),
 ))
 
 gulp.task('lint', gulp.series(
   tasks.checkEslint,
-  tasks.checkSasslint, [
+  tasks.checkSasslint.bind(null, [
     ...paths.styles.global.all.src,
-    ...paths.styles.global.other.src,
-    ...paths.styles.components.component.src,
-    ...paths.styles.components.admin.src,
-    ...paths.styles.components.ckeditor.src,
-    ...paths.styles.components.style.src,
-  ],
+    ...paths.styles.components.all.src,
+  ], true),
 ))
