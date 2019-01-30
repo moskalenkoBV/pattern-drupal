@@ -1,2 +1,14 @@
+// Vendors
+@import 'vendors/normalize';
+@import 'vendors/include-media';
+
+// Helpers
+@import 'helpers/constants';
+@import 'helpers/mixins';
+@import 'helpers/animations';
+@import 'helpers/colors';
+@import 'helpers/fonts';
+@import 'helpers/global';
+
 // Import .component.scss
-@import '../../source/_patterns/**/*.component.scss';
+@import '../../source/_patterns/**/*.component';

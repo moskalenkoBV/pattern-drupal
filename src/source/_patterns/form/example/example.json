@@ -1,0 +1,16 @@
+{
+  "children": {
+    "join()": [
+      {
+        "include()": {
+          "pattern": "form-example-element"
+        }
+      },
+      {
+        "include()": {
+          "pattern": "form-example-element"
+        }
+      }
+    ]
+  }
+}

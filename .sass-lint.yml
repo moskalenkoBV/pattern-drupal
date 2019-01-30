@@ -17,7 +17,7 @@ rules:
     - allow-leading-underscore: false
   clean-import-paths:
     - 2
-    - leading-underscore: true
+    - leading-underscore: false
     - file-extension: false
   declarations-before-nesting:
     - 2

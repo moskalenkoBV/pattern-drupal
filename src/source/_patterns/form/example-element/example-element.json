@@ -1,0 +1,25 @@
+{
+  "type": "text",
+  "name": "input",
+  "disabled": false,
+  "errors": false,
+  "prefix": false,
+  "suffix": false,
+  "required": false,
+  "label": {
+    "include()": {
+      "pattern": "form-example-element-label"
+    }
+  },
+  "description": {
+    "content": false
+  },
+  "description_display": "before",
+  "label_display": "before",
+  "title_display": false,
+  "children": {
+    "include()": {
+      "pattern": "form-example-input"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+// Mixins
+
+// Include Font
+// $name - name of the font
+// $path - relative path to the font without extension
+// $style - font-style of the font
+// $weight - font-weight of the font
+@mixin font ($name, $path, $style, $weight) {
+  @font-face {
+    font-family: $name;
+    src: url('#{$path}.eot');
+    src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+    url('#{$path}.woff2') format('woff2'),
+    url('#{$path}.woff') format('woff'),
+    url('#{$path}.ttf') format('truetype');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}

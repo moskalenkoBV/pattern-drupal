@@ -1,0 +1,26 @@
+{
+  "options": [
+    {
+      "type": "optgroup",
+      "label": "Option group label",
+      "options": [
+        {
+          "value": "Value1",
+          "selected": true,
+          "label": "Label1"
+        },
+        {
+          "value": "Value2",
+          "selected": false,
+          "label": "Label2"
+        }
+      ]
+    },
+    {
+      "type": "option",
+      "value": "Value3",
+      "selected": false,
+      "label": "Label3"
+    }
+  ]
+}

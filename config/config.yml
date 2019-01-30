@@ -18,10 +18,14 @@ cacheBusterOn: 'true'
 exportDir: export
 publicDir: public
 sourceDir: src/source
-defaultPattern: all
+defaultPattern: component-welcome
 defaultShowPatternInfo: false
-ishMinimum: '240'
+ishMinimum: '320'
 ishMaximum: '2600'
+ishViewportRange: 
+    s: [320, 320]
+    m: [768, 768]
+    l: [1024, 1024]
 ishControlsHide:
     - hay
     - random
