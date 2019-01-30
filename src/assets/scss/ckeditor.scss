@@ -1,6 +1,4 @@
-/* Ckeditor Styles */
-@import '../../source/_patterns/**/*.ckeditor';
-
-.app {
-  margin: 0;
+.cke_editable {
+  // Import .ckeditor.scss
+  @import '../../source/_patterns/**/*.ckeditor';
 }

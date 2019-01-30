@@ -127,6 +127,7 @@ const tasks = {
       .pipe(newer(paths.images.dest[0]))
       .pipe(imageMin())
       .pipe(gulp.dest(paths.images.dest))
+      .pipe(browserSync.reload({ stream: true }))
   ),
   clean: src => (
     gulp
@@ -146,7 +147,9 @@ const tasks = {
   checkSasslint: (path, isStopAfterError) => (
     gulp
       .src(path)
-      .pipe(sasslint())
+      .pipe(sasslint({
+        configFile: '.sass-lint.yml',
+      }))
       .pipe(sasslint.format())
       .pipe(gulpif(isStopAfterError, sasslint.failOnError()))
   ),
@@ -213,6 +216,25 @@ const watch = () => {
       tasks.checkSasslint.bind(null, [
         ...paths.styles.global.admin.src,
         ...paths.styles.components.admin.src,
+      ]),
+    ),
+  )
+
+  // Print, watch changes in print.scss and *.print.scss files
+  customUtils.watchArrayOfFiles(
+    [
+      ...paths.styles.components.print.src,
+      ...paths.styles.global.print.src,
+    ],
+    gulp,
+    gulp.series(
+      tasks.compileScss.bind(null, {
+        src: paths.styles.global.print.src,
+        dest: paths.styles.global.main.dest,
+      }),
+      tasks.checkSasslint.bind(null, [
+        ...paths.styles.global.print.src,
+        ...paths.styles.components.print.src,
       ]),
     ),
   )

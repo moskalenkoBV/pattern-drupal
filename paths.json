@@ -37,6 +37,11 @@
           "./src/assets/scss/admin.scss"
         ]
       },
+      "print": {
+        "src": [
+          "./src/assets/scss/print.scss"
+        ]
+      },
       "main": {
         "src": [
           "./src/assets/scss/*.scss"
@@ -75,6 +80,11 @@
       "style": {
         "src": [
           "./src/source/_patterns/**/*.style.scss"
+        ]
+      },
+      "print": {
+        "src": [
+          "./src/source/_patterns/**/*.print.scss"
         ]
       },
       "all": {

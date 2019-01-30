@@ -1,7 +1,9 @@
 {
   "title" : "Component Library",
   "isFront": true,
-  "theme_path": "../..",
+  "path_theme": "../..",
+  "path_svg": "../../assets/sprites/symbol/svg",
+  "path_images": "../../assets/images",
   "drupalSettings": {
     "a": 25,
     "b": 35

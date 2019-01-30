@@ -1,0 +1,9 @@
+@media print {
+  // Import .print.scss
+  @import '../../source/_patterns/**/*.print.scss';
+
+  @page {  
+    size: 297mm 210mm;
+    margin: 5mm 0 5mm 0;
+  }
+}

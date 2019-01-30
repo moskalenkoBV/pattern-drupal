@@ -1,16 +1,17 @@
 {
   "extends": [
-    "airbnb"
+    "airbnb-base"
   ],
-  "parser": "esprima",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
   "rules": {
-    "semi": [2, "never"],
-    "linebreak-style": [2, "unix"],
-    "quotes": [2, "single"],
-    "no-var": 2,
-    "array-bracket-newline": [2, { "multiline": true, "minItems": 2 }],
-    "max-len": [2, { "code": 120, "tabWidth": 2 }],
-    "no-multi-assign": 2
+    "no-console": ["error"],
+    "linebreak-style": ["error", "unix"],
+    "no-var": ["error"]
   },
   "env": {
     "es6": true
