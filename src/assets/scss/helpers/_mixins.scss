@@ -9,7 +9,7 @@
   @font-face {
     font-family: $name;
     src: url('#{$path}.eot');
-    src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+    src: url('#{$path}.eot?#iefix') format('embedded-opentype'), // sass-lint:disable-line no-duplicate-properties
     url('#{$path}.woff2') format('woff2'),
     url('#{$path}.woff') format('woff'),
     url('#{$path}.ttf') format('truetype');

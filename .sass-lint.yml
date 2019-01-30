@@ -70,7 +70,7 @@ rules:
   max-file-line-count: 0
   max-line-length:
     - 2
-    - length: 100
+    - length: 150
   mixin-name-format:
     - 2
     - allow-leading-underscore: false
