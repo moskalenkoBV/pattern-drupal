@@ -2,6 +2,9 @@
   "styles": [
     {
       "href": "../../assets/css/app.css"
+    },
+    {
+      "href": "../../assets/css/print.css"
     }
   ],
   "scripts": {
