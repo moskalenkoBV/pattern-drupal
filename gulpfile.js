@@ -1,28 +1,28 @@
 /* Dev Plugins */
-const gulp = require('gulp')
-const gulpif = require('gulp-if')
-const clean = require('gulp-clean')
-const browserSync = require('browser-sync')
-const shell = require('gulp-shell')
-const sass = require('gulp-sass')
-const postCSS = require('gulp-postcss')
-const autoprefixer = require('autoprefixer')
-const sassGlob = require('gulp-sass-glob')
-const concat = require('gulp-concat')
-const sourcemaps = require('gulp-sourcemaps')
-const babel = require('gulp-babel')
-const svgSprite = require('gulp-svg-sprite')
-const newer = require('gulp-newer')
-const imageMin = require('gulp-imagemin')
-const eslint = require('gulp-eslint')
-const sasslint = require('gulp-sass-lint')
+const gulp = require('gulp');
+const gulpif = require('gulp-if');
+const clean = require('gulp-clean');
+const browserSync = require('browser-sync');
+const shell = require('gulp-shell');
+const sass = require('gulp-sass');
+const postCSS = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const sassGlob = require('gulp-sass-glob');
+const concat = require('gulp-concat');
+const sourcemaps = require('gulp-sourcemaps');
+const babel = require('gulp-babel');
+const svgSprite = require('gulp-svg-sprite');
+const newer = require('gulp-newer');
+const imageMin = require('gulp-imagemin');
+const eslint = require('gulp-eslint');
+const sasslint = require('gulp-sass-lint');
 
 /* App Paths (Relative) */
 // TODO: Generate Absolute Paths by Path plugin (Can be JS file with module.exports instead of JSON)
-const paths = require('./paths.json')
+const paths = require('./paths.json');
 
 /* Custom Gulp Utils */
-const customUtils = require('./gulpCustomUtils')
+const customUtils = require('./gulpCustomUtils');
 
 /* Gulp Tasks */
 const tasks = {
@@ -50,7 +50,7 @@ const tasks = {
       src: './src/assets/scss/*.scss',
       dest: './public/assets/css/',
       ...inputParams,
-    }
+    };
 
     return (
       gulp
@@ -71,7 +71,7 @@ const tasks = {
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(params.dest))
         .pipe(browserSync.reload({ stream: true }))
-    )
+    );
   },
   babelJS: (inputParams) => {
     const params = {
@@ -80,7 +80,7 @@ const tasks = {
       isMerge: false,
       filename: 'scripts.js',
       ...inputParams,
-    }
+    };
 
     return (
       gulp
@@ -96,7 +96,7 @@ const tasks = {
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(params.dest))
         .pipe(browserSync.reload({ stream: true }))
-    )
+    );
   },
   buildSVGSprites: () => (
     gulp
@@ -111,7 +111,7 @@ const tasks = {
       .pipe(browserSync.reload({ stream: true }))
   ),
   copyFiles: (params) => {
-    if (!params.src || !params.dest) return false
+    if (!params.src || !params.dest) return false;
 
     return (
       gulp
@@ -119,7 +119,7 @@ const tasks = {
         .pipe(gulpif(params.newer, newer(params.dest[0])))
         .pipe(gulp.dest(params.dest))
         .pipe(browserSync.reload({ stream: true }))
-    )
+    );
   },
   minImages: () => (
     gulp
@@ -153,12 +153,12 @@ const tasks = {
       .pipe(sasslint.format())
       .pipe(gulpif(isStopAfterError, sasslint.failOnError()))
   ),
-}
+};
 
 const watch = () => {
   /* Start Server */
   // TODO: Disable attaching of the browserSync to Iframe
-  tasks.browserSync()
+  tasks.browserSync();
 
   /* Compile SCSS */
   // Divided into parts for reducing time of the compilation proccess in Development Mode
@@ -180,7 +180,7 @@ const watch = () => {
         ...paths.styles.components.component.src,
       ]),
     ),
-  )
+  );
 
   // Ckeditor, watch changes in ckeditor.scss and *.ckeditor.scss files
   customUtils.watchArrayOfFiles(
@@ -199,7 +199,7 @@ const watch = () => {
         ...paths.styles.components.ckeditor.src,
       ]),
     ),
-  )
+  );
 
   // Admin, watch changes in admin.scss and *.admin.scss files
   customUtils.watchArrayOfFiles(
@@ -218,7 +218,7 @@ const watch = () => {
         ...paths.styles.components.admin.src,
       ]),
     ),
-  )
+  );
 
   // Print, watch changes in print.scss and *.print.scss files
   customUtils.watchArrayOfFiles(
@@ -237,7 +237,7 @@ const watch = () => {
         ...paths.styles.components.print.src,
       ]),
     ),
-  )
+  );
 
   // Rebuild All SCSS if something happens with SCSS utils, general styles of component ..., etc.
   customUtils.watchArrayOfFiles(
@@ -256,26 +256,26 @@ const watch = () => {
         ...paths.styles.components.all.src,
       ]),
     ),
-  )
+  );
 
   /* Babel JS */
   // Behaviors
   gulp.watch(
     paths.scripts.behaviors.src,
     tasks.babelJS.bind(null, customUtils.babelJSParams.behaviors),
-  )
+  );
 
   // Module Scripts
   gulp.watch(
     paths.scripts.modules.src,
     tasks.babelJS.bind(null, customUtils.babelJSParams.modules),
-  )
+  );
 
   /* Global Scripts */
   gulp.watch(
     paths.scripts.global.src,
     tasks.babelJS.bind(null, customUtils.babelJSParams.global),
-  )
+  );
 
   /* Rebuild App */
   customUtils.watchArrayOfFiles(
@@ -285,14 +285,14 @@ const watch = () => {
     ],
     gulp,
     tasks.rebuildPatternLab,
-  )
-}
+  );
+};
 
 /* Series of the Gulp Tasks */
 const buildPatternLab = gulp.series(
   tasks.rebuildPatternLab,
   tasks.copyStyleGuide,
-)
+);
 
 const buildAssets = gulp.series(
   gulp.parallel(
@@ -312,7 +312,7 @@ const buildAssets = gulp.series(
     }),
   ),
   tasks.compileScss.bind(null),
-)
+);
 
 /* Tasks For Yarn */
 gulp.task('dev', gulp.series(
@@ -320,24 +320,24 @@ gulp.task('dev', gulp.series(
   buildPatternLab,
   buildAssets,
   watch,
-))
+));
 
 gulp.task('build', gulp.series(
   tasks.clean.bind(null, paths.root),
   buildPatternLab,
   buildAssets,
-))
+));
 
 gulp.task('eslint', gulp.series(
   tasks.checkEslint,
-))
+));
 
 gulp.task('sasslint', gulp.series(
   tasks.checkSasslint.bind(null, [
     ...paths.styles.global.all.src,
     ...paths.styles.components.all.src,
   ], true),
-))
+));
 
 gulp.task('lint', gulp.series(
   tasks.checkEslint,
@@ -345,4 +345,4 @@ gulp.task('lint', gulp.series(
     ...paths.styles.global.all.src,
     ...paths.styles.components.all.src,
   ], true),
-))
+));
