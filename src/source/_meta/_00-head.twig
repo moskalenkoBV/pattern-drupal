@@ -17,7 +17,7 @@
 
     {% for item in scripts.header %}
       {% if item.src %}
-        <script src={{ item.src }} {{ item.async ? 'async' }} {{ item.defer ? 'defer' }}></script>
+        <script src="{{ item.src }}" {{ item.async ? 'async' }} {{ item.defer ? 'defer' }}></script>
       {% endif %}
     {% endfor %}
 
