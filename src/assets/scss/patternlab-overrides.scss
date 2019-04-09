@@ -1,0 +1,11 @@
+.sg-nav {
+  li {
+    &:last-child {
+      display: none;
+    }
+  }
+}
+
+[data-pattern-name='Patternlab Home'] {
+  display: none;
+}

@@ -59,6 +59,11 @@
         "src": [
           "./src/assets/scss/**/*.scss"
         ]
+      },
+      "patternlabOverrides": {
+        "src": [
+          "./src/assets/scss/patternlab-overrides.scss"
+        ]
       }
     },
     "components": {

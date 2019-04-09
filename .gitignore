@@ -6,6 +6,7 @@ export/*
 public/*
 vendor/*
 source/styleguide/*
+src/source/_twig-components/*
 config/*.json
 node_modules
 yarn-error.log

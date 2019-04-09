@@ -72,6 +72,40 @@ class Installer {
 		}
 		
 	}
+
+	private static function overrideConfig() {
+
+		if (empty(self::$installerInfo["packages"])) return;
+
+		$packages = self::$installerInfo["packages"];
+
+		foreach ($packages as $key => $package) {
+			switch ($package["name"]) {
+				case "pattern-lab/patternengine-twig" :
+					$packages[$key]["extra"]["config"]["twigDebug"] = true;
+					$packages[$key]["extra"]["config"]["twigAutoescape"] = false;
+					break;
+				case "pattern-lab/styleguidekit-assets-default" :
+					$packages[$key]["extra"]["config"]["ishMinimum"] = 320;
+					$packages[$key]["extra"]["config"]["ishControlsHide"] = array(
+						'hay',
+						'random',
+						'disco',
+						'tools-docs',
+						'views-annotations',
+						'views-code',
+						'views-new',
+						'views-all'
+					);
+					break;
+				default :
+					break;
+			}
+		}
+
+		self::$installerInfo["packages"] = $packages;
+
+	}
 	
 	/**
 	 * Run the centralized postInstallCmd
@@ -79,6 +113,7 @@ class Installer {
 	 */
 	public static function postInstallCmd(Event $event) {
 		
+		self::overrideConfig();
 		InstallerUtil::postInstallCmd(self::$installerInfo, $event);
 		
 	}
@@ -89,6 +124,7 @@ class Installer {
 	 */
 	public static function postUpdateCmd(Event $event) {
 		
+		self::overrideConfig();
 		InstallerUtil::postUpdateCmd(self::$installerInfo, $event);
 		
 	}

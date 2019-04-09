@@ -13,7 +13,6 @@ const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
 const svgSprite = require('gulp-svg-sprite');
 const newer = require('gulp-newer');
-const imageMin = require('gulp-imagemin');
 const eslint = require('gulp-eslint');
 const sasslint = require('gulp-sass-lint');
 
@@ -125,7 +124,6 @@ const tasks = {
     gulp
       .src(paths.images.src)
       .pipe(newer(paths.images.dest[0]))
-      .pipe(imageMin())
       .pipe(gulp.dest(paths.images.dest))
       .pipe(browserSync.reload({ stream: true }))
   ),
@@ -178,7 +176,7 @@ const watch = () => {
       tasks.checkSasslint.bind(null, [
         ...paths.styles.global.app.src,
         ...paths.styles.components.component.src,
-      ]),
+      ], false),
     ),
   );
 
@@ -197,7 +195,7 @@ const watch = () => {
       tasks.checkSasslint.bind(null, [
         ...paths.styles.global.ckeditor.src,
         ...paths.styles.components.ckeditor.src,
-      ]),
+      ], false),
     ),
   );
 
@@ -216,7 +214,7 @@ const watch = () => {
       tasks.checkSasslint.bind(null, [
         ...paths.styles.global.admin.src,
         ...paths.styles.components.admin.src,
-      ]),
+      ], false),
     ),
   );
 
@@ -235,7 +233,7 @@ const watch = () => {
       tasks.checkSasslint.bind(null, [
         ...paths.styles.global.print.src,
         ...paths.styles.components.print.src,
-      ]),
+      ], false),
     ),
   );
 
@@ -254,7 +252,19 @@ const watch = () => {
       tasks.checkSasslint.bind(null, [
         ...paths.styles.global.all.src,
         ...paths.styles.components.all.src,
-      ]),
+      ], false),
+    ),
+  );
+
+  // Patternlab overrides
+  gulp.watch(
+    paths.styles.global.patternlabOverrides.src,
+    gulp.series(
+      tasks.compileScss.bind(null, {
+        src: paths.styles.global.patternlabOverrides.src,
+        dest: paths.styles.global.main.dest,
+      }),
+      tasks.checkSasslint.bind(null, paths.styles.global.patternlabOverrides.src, false),
     ),
   );
 
@@ -325,6 +335,10 @@ gulp.task('dev', gulp.series(
 gulp.task('build', gulp.series(
   tasks.clean.bind(null, paths.root),
   buildPatternLab,
+  buildAssets,
+));
+
+gulp.task('buildAssets', gulp.series(
   buildAssets,
 ));
 

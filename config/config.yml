@@ -22,10 +22,16 @@ defaultPattern: component-welcome
 defaultShowPatternInfo: false
 ishMinimum: '320'
 ishMaximum: '2600'
-ishViewportRange: 
-    s: [320, 320]
-    m: [768, 768]
-    l: [1024, 1024]
+ishViewportRange:
+    s:
+        - 320
+        - 320
+    m:
+        - 768
+        - 768
+    l:
+        - 1024
+        - 1024
 ishControlsHide:
     - hay
     - random
@@ -35,8 +41,8 @@ ishControlsHide:
     - views-code
     - views-new
     - views-all
-styleguideKit: pattern-lab/styleguidekit-twig-default
-styleguideKitPath: 'vendor/pattern-lab/styleguidekit-twig-default'
+styleguideKit: moskalenkobv/styleguidekit-twig-default
+styleguideKitPath: '/vendor/moskalenkobv/styleguidekit-twig-default'
 lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}'
 lineageMatchKey: 3
 patternExtension: twig
@@ -52,3 +58,4 @@ twigTestExt: test.php
 plugins:
     dataTransform:
         enabled: true
+        verbose: false
