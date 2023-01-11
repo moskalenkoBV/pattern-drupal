@@ -15,7 +15,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: 'steps.reviews.outputs.approved == 'true'
+        if: ${{ steps.approved.outputs.approved == 'true' }}
         run: echo 'plus'
 
       # Runs a set of commands using the runners shell
