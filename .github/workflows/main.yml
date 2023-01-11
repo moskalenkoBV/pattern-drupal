@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: customAction
-        uses: /.github/actions/custom-action
+        uses: ./.github/actions/custom-action
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
