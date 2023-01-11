@@ -8,13 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: 'reviews'
-        uses: 'jrylan/github-action-reviews-counter@main'
+        uses: 'luisrjaeger/approved-event-checker@v1.0.0'
         with:
-          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          approvals: 2
+          check_changes_requested: true
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: 'steps.reviews.outputs.approved == 1 && steps.reviews.outputs.changes_requested == 0'
+        if: 'steps.reviews.outputs.approved == 'true'
         run: echo 'plus'
 
       # Runs a set of commands using the runners shell
