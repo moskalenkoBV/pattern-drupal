@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: 'reviews'
-        uses: 'luisrjaeger/approved-event-checker@v1.0.0'
+        uses: 'taichi/approved-event-action@v1.2.1'
         with:
           approvals: 2
           check_changes_requested: true
