@@ -1,19 +1,21 @@
 name: CI
 
-on: [pull_request]
+on: [pull_request_review]
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - id: customAction
-        uses: ./.github/actions/custom-action
+      - id: 'reviews'
+        uses: 'jrylan/github-action-reviews-counter@main'
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: steps.customAction.outputs.data != 'someData'
-        run: echo ${{steps.customAction.outputs.data}}
+        if: 'steps.reviews.outputs.approved == 1 && steps.reviews.outputs.changes_requested == 0'
+        run: echo 'plus'
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
