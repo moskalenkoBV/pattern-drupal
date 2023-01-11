@@ -11,7 +11,6 @@ jobs:
         uses: 'taichi/approved-event-action@v1.2.1'
         with:
           approvals: 2
-          check_changes_requested: true
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
