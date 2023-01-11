@@ -12,6 +12,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        if: steps.customAction.outputs.data != 'someData'
         run: echo ${{steps.customAction.outputs.data}}
 
       # Runs a set of commands using the runners shell
