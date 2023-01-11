@@ -10,7 +10,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo ${{ github }} Hello, world!
+        run: echo ${{ toJSON(github) }} Hello, world!
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
