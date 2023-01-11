@@ -1,8 +1,6 @@
 name: CI
 
-on:
-  release:
-    types: [released]
+on: ['pull_request']
 jobs:
   build:
     runs-on: ubuntu-latest
