@@ -9696,13 +9696,22 @@ const run = async () => {
     const nwo = process.env.GITHUB_REPOSITORY;
     const [owner, repo] = nwo.split('/');
 
-    console.log(github.context.payload.pull_request.base.ref);
+    const data = await octokit.request(
+      'GET /repos/{owner}/{repo}/branches/{branch}/protection',
+      {
+        owner: owner,
+        repo: repo,
+        branch: github.context.payload.pull_request.base.ref,
+      }
+    );
+
+    console.log(JSON.stringify(data));
 
     // const data = await octokit.request(
     //   'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews',
     //   {
-    //     owner: github.getOctokit(core.getInput('owner')),
-    //     repo: github.getOctokit(core.getInput('repo')),
+    //     owner: github.getOctokit(owner),
+    //     repo: github.getOctokit(repo),
     //   }
     // );
 
