@@ -10706,7 +10706,7 @@ async function run() {
         return acc;
       }, {});
 
-      const uniqueApproves = Object.keys(uniqueApproves).length;
+      const uniqueApproves = Object.keys(uniqueUserApproves).length;
 
       console.log(JSON.stringify(github));
     }
