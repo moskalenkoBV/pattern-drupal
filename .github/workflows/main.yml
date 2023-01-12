@@ -18,9 +18,10 @@ jobs:
           approve_count: 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: './.github/workflows/sub.yml'
     outputs:
       approved: ${{ steps.checkApproves.outputs.data }}
+  asd:
+    uses: ./.github/workflows/sub.yml
   # build:
   #   needs: checkApproves
   #   runs-on: ubuntu-latest
