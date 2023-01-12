@@ -10708,10 +10708,20 @@ async function run() {
 
       const uniqueApproves = Object.keys(uniqueUserApproves).length;
 
-      console.log(JSON.stringify(github));
+      if (
+        github.context.eventName === 'pull_request' &&
+        uniqueApproves >= approveCount
+      ) {
+        core.setOutput('data', true);
+      } else if (
+        github.context.eventName === 'pull_request_review' &&
+        uniqueApproves == approveCount
+      ) {
+        core.setOutput('data', true);
+      } else {
+        core.setOutput('data', false);
+      }
     }
-
-    core.setOutput('data', 'someData');
   } catch (error) {
     core.setFailed(error.message);
   }
