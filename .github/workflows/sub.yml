@@ -6,8 +6,6 @@ on:
 
 jobs:
   build:
-    needs: checkApproves
-    if: ${{needs.checkApproves.outputs.approved == 'true'}}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
