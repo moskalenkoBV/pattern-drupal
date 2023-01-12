@@ -11,27 +11,14 @@ const run = async () => {
       auth: token,
     });
 
-    console.log(
-      `/repos/${owner}/${repo}/branches/${github.context.payload.pull_request.base.ref}/protection`
-    );
-
     const data = await octokit.request(
-      'GET /repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews',
+      'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100',
       {
         owner: owner,
         repo: repo,
-        branch: github.context.payload.pull_request.base.ref,
+        pull_number: github.context.payload.pull_request.number,
       }
     );
-
-    // const data = await octokit.request(
-    //   'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews',
-    //   {
-    //     owner: owner,
-    //     repo: repo,
-    //     pull_number: github.context.payload.pull_request.number,
-    //   }
-    // );
 
     console.log(JSON.stringify(data));
 
