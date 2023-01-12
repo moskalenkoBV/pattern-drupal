@@ -18,8 +18,8 @@ jobs:
           approve_count: 1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: peter-evans/repository-dispatch@v2
-        name: 'Dispatch Sub Workflow'
+      - name: 'Dispatch Sub Workflow'
+        uses: peter-evans/repository-dispatch@v2
         with:
           event-type: my-event
     # outputs:
