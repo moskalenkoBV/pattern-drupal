@@ -10684,6 +10684,8 @@ const run = async () => {
       auth: token,
     });
 
+    console.log('/');
+
     const data = await octokit.request(
       'GET /repos/{owner}/{repo}/branches/{branch}/protection',
       {
