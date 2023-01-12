@@ -1,14 +1,14 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const Octokit = require('@octokit/core').Octokit;
 
 const run = async () => {
   try {
-    const octokit = github.getOctokit(
-      core.getInput('token', { required: true })
-    );
-
     const nwo = process.env.GITHUB_REPOSITORY;
     const [owner, repo] = nwo.split('/');
+    const octokit = new Octokit({
+      auth: core.getInput('token', { required: true }),
+    });
 
     const data = await octokit.request(
       'GET /repos/{owner}/{repo}/branches/{branch}/protection',
