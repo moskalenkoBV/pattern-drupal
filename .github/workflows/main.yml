@@ -1,16 +1,14 @@
 name: CI
 
-on: [pull_request_review]
+on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - id: 'reviews'
-        uses: 'taichi/approved-event-action@v1.2.1'
-        with:
-          approvals: 2
+      - id: customAction
+        uses: './.github/actions/custom-action'
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
