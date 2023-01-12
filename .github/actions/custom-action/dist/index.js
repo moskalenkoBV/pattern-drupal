@@ -9696,7 +9696,7 @@ const run = async () => {
     const nwo = process.env.GITHUB_REPOSITORY;
     const [owner, repo] = nwo.split('/');
 
-    console.log(github);
+    console.log(JSON.stringify(github));
     console.log(process.env);
 
     // const data = await octokit.request(
