@@ -10684,7 +10684,7 @@ async function run() {
       auth: token,
     });
 
-    console.log(github.context.pull_request.base.ref);
+    console.log(github);
 
     // const res1 = await octokit.request(`GET /repos/{owner}/{repo}/branches/{branch}/protection`, {
     //   owner: owner,
