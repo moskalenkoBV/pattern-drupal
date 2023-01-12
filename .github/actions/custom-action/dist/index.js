@@ -10689,7 +10689,7 @@ const run = async () => {
     );
 
     const data = await octokit.request(
-      'GET /repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews',
+      'GET /repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins',
       {
         owner: owner,
         repo: repo,
