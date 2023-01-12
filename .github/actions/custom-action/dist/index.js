@@ -10675,17 +10675,20 @@ const core = __nccwpck_require__(8563);
 const github = __nccwpck_require__(4598);
 const Octokit = (__nccwpck_require__(9626)/* .Octokit */ .v);
 
-const run = async () => {
+async function run() {
   try {
     const nwo = process.env.GITHUB_REPOSITORY;
     const token = process.env.GITHUB_TOKEN;
     const [owner, repo] = nwo.split('/');
+    const approveCount = core.getInput('approve_count', { required: true });
     const octokit = new Octokit({
       auth: token,
     });
 
-    const data = await octokit.request(
-      'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100&page=2',
+    const res = await octokit.request(
+      `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100&page=${
+        page || 1
+      }`,
       {
         owner: owner,
         repo: repo,
@@ -10693,13 +10696,28 @@ const run = async () => {
       }
     );
 
-    console.log(JSON.stringify(data));
+    if (!res.data.length) {
+      core.setOutput('data', false);
+    } else {
+      const uniqueUserApproves = res.data.reduce((item, acc) => {
+        if (acc[item.user.id]) return acc;
+        if (item.state.toLowerCase() !== 'approved') return acc;
+
+        acc[item.user.id] = 'approved';
+
+        return acc;
+      }, {});
+
+      const uniqueApproves = Object.keys(uniqueApproves).length;
+
+      console.log(JSON.stringify(github));
+    }
 
     core.setOutput('data', 'someData');
   } catch (error) {
     core.setFailed(error.message);
   }
-};
+}
 
 run();
 
