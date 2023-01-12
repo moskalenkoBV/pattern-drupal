@@ -13,9 +13,7 @@ async function run() {
     });
 
     const res = await octokit.request(
-      `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100&page=${
-        page || 1
-      }`,
+      `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
       {
         owner: owner,
         repo: repo,
