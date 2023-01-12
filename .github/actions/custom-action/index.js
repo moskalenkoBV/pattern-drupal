@@ -24,7 +24,7 @@ async function run() {
     if (!res.data.length) {
       core.setOutput('data', false);
     } else {
-      const uniqueUserApproves = res.data.reduce((item, acc) => {
+      const uniqueUserApproves = res.data.reduce((acc, item) => {
         if (acc[item.user.id]) return acc;
         if (item.state.toLowerCase() !== 'approved') return acc;
 
