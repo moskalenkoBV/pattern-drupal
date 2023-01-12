@@ -19,7 +19,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: ${{ steps.customAction.outputs.data == true }}
+        if: ${{ steps.customAction.outputs.data == 'true' }}
         run: echo 'plus'
 
       # Runs a set of commands using the runners shell
