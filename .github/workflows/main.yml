@@ -10,7 +10,7 @@ jobs:
       - id: customAction
         uses: './.github/actions/custom-action'
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: 's'
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
