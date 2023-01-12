@@ -15,27 +15,27 @@ const run = async () => {
       `/repos/${owner}/${repo}/branches/${github.context.payload.pull_request.base.ref}/protection`
     );
 
-    // const data = await octokit.request(
-    //   'GET /repos/{owner}/{repo}/branches/{branch}/protection',
-    //   {
-    //     owner: owner,
-    //     repo: repo,
-    //     branch: github.context.payload.pull_request.base.ref,
-    //   }
-    // );
-
-    // console.log(JSON.stringify(data));
-
     const data = await octokit.request(
-      'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews',
+      'GET /repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews',
       {
         owner: owner,
         repo: repo,
-        pull_number: github.context.payload.pull_request.number,
+        branch: github.context.payload.pull_request.base.ref,
       }
     );
 
     console.log(JSON.stringify(data));
+
+    // const data = await octokit.request(
+    //   'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews',
+    //   {
+    //     owner: owner,
+    //     repo: repo,
+    //     pull_number: github.context.payload.pull_request.number,
+    //   }
+    // );
+
+    // console.log(JSON.stringify(data));
 
     core.setOutput('data', 'someData');
   } catch (error) {
