@@ -10680,20 +10680,20 @@ const run = async () => {
     const nwo = process.env.GITHUB_REPOSITORY;
     const token = process.env.GITHUB_TOKEN;
     const [owner, repo] = nwo.split('/');
-    const octokit = new Octokit({
-      auth: token,
-    });
+    // const octokit = new Octokit({
+    //   auth: token,
+    // });
 
-    const data = await octokit.request(
-      'GET /repos/{owner}/{repo}/branches/{branch}/protection',
-      {
-        owner: owner,
-        repo: repo,
-        branch: github.context.payload.pull_request.base.ref,
-      }
-    );
+    // const data = await octokit.request(
+    //   'GET /repos/{owner}/{repo}/branches/{branch}/protection',
+    //   {
+    //     owner: owner,
+    //     repo: repo,
+    //     branch: github.context.payload.pull_request.base.ref,
+    //   }
+    // );
 
-    console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
 
     // const data = await octokit.request(
     //   'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews',
