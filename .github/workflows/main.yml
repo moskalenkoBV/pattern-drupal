@@ -21,6 +21,7 @@ jobs:
     outputs:
       approved: ${{ steps.checkApproves.outputs.data }}
   build:
+    needs: [checkApproves]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
