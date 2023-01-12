@@ -10684,19 +10684,6 @@ async function run() {
       auth: token,
     });
 
-    console.log();
-
-    const res1 = await octokit.request(
-      `GET /repos/{owner}/{repo}/branches/{branch}/protection`,
-      {
-        owner: owner,
-        repo: repo,
-        branch: github.context.payload.pull_request.base.ref,
-      }
-    );
-
-    console.log(JSON.parse(res1));
-
     const res = await octokit.request(
       `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
       {
