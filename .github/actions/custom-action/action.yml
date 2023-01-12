@@ -1,9 +1,5 @@
 name: 'Custom Action'
 description: 'Get count'
-inputs:
-  token:
-    description: 'GITHUB_TOKEN secret'
-    required: true
 outputs:
   data:
     description: 'Description'
