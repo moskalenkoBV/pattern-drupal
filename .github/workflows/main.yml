@@ -6,25 +6,31 @@ on:
     types: [submitted]
 
 jobs:
-  build:
+  checkApproves:
     if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - id: customAction
+      - id: checkApproves
         name: 'Check Approves'
         uses: './.github/actions/custom-action'
         with:
           approve_count: 1
+    outputs:
+      approved: ${{ steps.checkApproves.outputs.data }}
+  build:
+    needs: checkApproves
+    if: ${{needs.checkApproves.outputs.approved == 'true'}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: ${{ steps.customAction.outputs.data == 'true' }}
         run: echo 'plus'
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        if: ${{ steps.customAction.outputs.data == 'true' }}
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
