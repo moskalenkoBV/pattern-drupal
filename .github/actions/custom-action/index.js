@@ -5,9 +5,10 @@ const Octokit = require('@octokit/core').Octokit;
 const run = async () => {
   try {
     const nwo = process.env.GITHUB_REPOSITORY;
+    const token = process.env.GITHUB_TOKEN;
     const [owner, repo] = nwo.split('/');
     const octokit = new Octokit({
-      auth: core.getInput('token', { required: true }),
+      auth: token,
     });
 
     const data = await octokit.request(
