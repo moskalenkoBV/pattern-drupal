@@ -10684,7 +10684,9 @@ const run = async () => {
       auth: token,
     });
 
-    console.log('/');
+    console.log(
+      `/repos/${owner}/${repo}/branches/${github.context.payload.pull_request.base.ref}/protection`
+    );
 
     const data = await octokit.request(
       'GET /repos/{owner}/{repo}/branches/{branch}/protection',
