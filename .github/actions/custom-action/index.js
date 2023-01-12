@@ -11,14 +11,14 @@ const run = async () => {
       auth: token,
     });
 
-    // const data = await octokit.request(
-    //   'GET /repos/{owner}/{repo}/branches/{branch}/protection',
-    //   {
-    //     owner: owner,
-    //     repo: repo,
-    //     branch: github.context.payload.pull_request.base.ref,
-    //   }
-    // );
+    const data = await octokit.request(
+      'GET /repos/{owner}/{repo}/branches/{branch}/protection',
+      {
+        owner: owner,
+        repo: repo,
+        branch: github.context.payload.pull_request.base.ref,
+      }
+    );
 
     // console.log(JSON.stringify(data));
 
