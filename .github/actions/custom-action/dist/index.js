@@ -10680,9 +10680,9 @@ const run = async () => {
     const nwo = process.env.GITHUB_REPOSITORY;
     const token = process.env.GITHUB_TOKEN;
     const [owner, repo] = nwo.split('/');
-    // const octokit = new Octokit({
-    //   auth: token,
-    // });
+    const octokit = new Octokit({
+      auth: token,
+    });
 
     // const data = await octokit.request(
     //   'GET /repos/{owner}/{repo}/branches/{branch}/protection',
