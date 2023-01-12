@@ -10,7 +10,7 @@ const run = async () => {
     const nwo = process.env.GITHUB_REPOSITORY;
     const [owner, repo] = nwo.split('/');
 
-    console.log(github);
+    console.log(process.env);
 
     // const data = await octokit.request(
     //   'GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews',
