@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const Octokit = require('@octokit/core').Octokit;
+const { Octokit } = require('@octokit/core');
 
 async function run() {
   try {
@@ -11,6 +11,14 @@ async function run() {
     const octokit = new Octokit({
       auth: token,
     });
+
+    console.log(github.context.pull_request.base.ref);
+
+    // const res1 = await octokit.request(`GET /repos/{owner}/{repo}/branches/{branch}/protection`, {
+    //   owner: owner,
+    //   repo: repo,
+    //   branch: github.context.pull_request.base.ref
+    // })
 
     const res = await octokit.request(
       `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
@@ -25,10 +33,10 @@ async function run() {
       core.setOutput('data', false);
     } else {
       const uniqueUserApproves = res.data.reduce((acc, item) => {
-        if (acc[item.user.id]) return acc;
-        if (item.state.toLowerCase() !== 'approved') return acc;
+        if (acc[item.user.id] || item.state.toLowerCase() !== 'approved')
+          return acc;
 
-        acc[item.user.id] = 'approved';
+        acc[item.user.id] = true;
 
         return acc;
       }, {});

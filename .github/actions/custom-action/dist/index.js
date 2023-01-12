@@ -3083,10 +3083,9 @@ exports.createTokenAuth = createTokenAuth;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
-var __webpack_unused_export__;
 
 
-__webpack_unused_export__ = ({ value: true });
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 var universalUserAgent = __nccwpck_require__(1773);
 var beforeAfterHook = __nccwpck_require__(2532);
@@ -3220,7 +3219,7 @@ class Octokit {
 Octokit.VERSION = VERSION;
 Octokit.plugins = [];
 
-exports.v = Octokit;
+exports.Octokit = Octokit;
 //# sourceMappingURL=index.js.map
 
 
@@ -10673,7 +10672,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(8563);
 const github = __nccwpck_require__(4598);
-const Octokit = (__nccwpck_require__(9626)/* .Octokit */ .v);
+const { Octokit } = __nccwpck_require__(9626);
 
 async function run() {
   try {
@@ -10684,6 +10683,14 @@ async function run() {
     const octokit = new Octokit({
       auth: token,
     });
+
+    console.log(github.context.pull_request.base.ref);
+
+    // const res1 = await octokit.request(`GET /repos/{owner}/{repo}/branches/{branch}/protection`, {
+    //   owner: owner,
+    //   repo: repo,
+    //   branch: github.context.pull_request.base.ref
+    // })
 
     const res = await octokit.request(
       `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
@@ -10698,10 +10705,10 @@ async function run() {
       core.setOutput('data', false);
     } else {
       const uniqueUserApproves = res.data.reduce((acc, item) => {
-        if (acc[item.user.id]) return acc;
-        if (item.state.toLowerCase() !== 'approved') return acc;
+        if (acc[item.user.id] || item.state.toLowerCase() !== 'approved')
+          return acc;
 
-        acc[item.user.id] = 'approved';
+        acc[item.user.id] = true;
 
         return acc;
       }, {});
