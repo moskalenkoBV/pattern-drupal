@@ -25,7 +25,7 @@ TO DO
 
 ## Yarn Commands
 
-The Front-end build of the project supports the following yarn scripts:
+The Front-end build of the project supports the following yarn script:
 
 | Description                           | Command            |
 | ------------------------------------- | ------------------ |
