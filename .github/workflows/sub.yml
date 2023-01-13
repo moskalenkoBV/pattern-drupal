@@ -1,5 +1,8 @@
 name: Sub1
-on: workflow_dispatch
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
 jobs:
   build:
     runs-on: ubuntu-latest
