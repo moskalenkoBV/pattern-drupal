@@ -1,5 +1,9 @@
 name: CI
-on: [release]
+on:
+  pull_request:
+    types: [synchronize]
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   checkApproves:
@@ -16,9 +20,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       approved: ${{ steps.checkApproves.outputs.data }}
-  asd:
-    needs: checkApproves
-    uses: ./.github/workflows/sub.yml
   # build:
   #   needs: checkApproves
   #   runs-on: ubuntu-latest
