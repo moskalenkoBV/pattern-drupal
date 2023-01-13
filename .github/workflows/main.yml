@@ -1,21 +1,38 @@
 name: CI
+on: [release]
 
-on:
-  release:
-    types: [released]
 jobs:
-  build:
+  checkApproves:
+    if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
+      - id: checkApproves
+        name: 'Check Approves'
+        uses: './.github/actions/custom-action'
+        with:
+          approve_count: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      approved: ${{ steps.checkApproves.outputs.data }}
+  asd:
+    needs: checkApproves
+    uses: ./.github/workflows/sub.yml
+  # build:
+  #   needs: checkApproves
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script ${{ github.ref_name }}
-        run: echo Hello, world!
+  #     # Runs a single command using the runners shell
+  #     - name: Run a one-line script
+  #       env:
+  #         test: '${{toJSON(github)}}'
+  #       run: echo ${{ env.test }}
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+  #     # Runs a set of commands using the runners shell
+  #     - name: Run a multi-line script
+  #       run: |
+  #         echo Add other actions to build,
+  #         echo test, and deploy your project.

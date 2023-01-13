@@ -1,0 +1,12 @@
+name: 'Custom Action'
+description: 'Get count'
+inputs:
+  approve_count:
+    description: 'Approve Count'
+    required: true
+outputs:
+  data:
+    description: 'Description'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
