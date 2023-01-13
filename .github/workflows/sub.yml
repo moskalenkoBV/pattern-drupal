@@ -8,8 +8,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        env:
-          test: '${{toJSON(github)}}'
         run: echo ${{ env.test }}
 
       # Runs a set of commands using the runners shell
