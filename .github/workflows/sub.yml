@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
+      # Runs a single command using the runners shel
       - name: Run a one-line script
         run: echo ${{ env.test }}
 
