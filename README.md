@@ -6,7 +6,7 @@
 
 Test
 
-To get the project up and running, and view components in the browser, complete the following steps:
+To get the project up and running, and view components in the browser, complete the following stepss:
 
 - Download and install [Node.js](https://nodejs.org/) (last stable version);
 - Download and install [Yarn Package Manager](https://yarnpkg.com/) (last stable version);
