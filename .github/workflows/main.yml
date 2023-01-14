@@ -8,7 +8,7 @@ jobs:
   checkApproves:
     if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
     permissions:
-      checks: write|read
+      checks: [write, read]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
