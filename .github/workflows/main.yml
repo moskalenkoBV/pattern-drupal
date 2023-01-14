@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: my
         env:
           testvar: ${{ toJSON(github) }}
         run: echo testvar
