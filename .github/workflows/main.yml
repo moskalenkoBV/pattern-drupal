@@ -4,8 +4,8 @@ on:
     types: [synchronize]
   pull_request_review:
     types: [submitted]
-if: ${{ 'true' == 'dd' }}
 jobs:
+  if: ${{ 'true' == 'ds' }}
   test:
     runs-on: ubuntu-latest
     steps:
