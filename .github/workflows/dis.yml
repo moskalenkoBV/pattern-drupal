@@ -2,6 +2,8 @@ name: Dispatched
 on:
   check_run:
     types: [completed]
+permissions:
+  check: read
 
 jobs:
   testJob:
