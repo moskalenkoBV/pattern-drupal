@@ -1,23 +1,23 @@
 name: CI
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request:
+    types: [synchronize]
 
 jobs:
-  checkApproves:
-    if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - id: checkApproves
-        name: 'Check Approves'
-        uses: './.github/actions/custom-action'
-        with:
-          approve_count: 0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      approved: ${{ steps.checkApproves.outputs.data }}
+  # checkApproves:
+  #   if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - id: checkApproves
+  #       name: 'Check Approves'
+  #       uses: './.github/actions/custom-action'
+  #       with:
+  #         approve_count: 1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   outputs:
+  #     approved: ${{ steps.checkApproves.outputs.data }}
   build:
     needs: checkApproves
     if: ${{ needs.checkApproves.outputs.approved == 'true' }}
