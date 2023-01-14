@@ -23,7 +23,12 @@ async function run() {
       }
     );
 
-    console.log(JSON.stringify(res));
+    await octokit.request(`POST /repos/{owner}/{repo}/check-runs`, {
+      owner: owner,
+      repo: repo,
+      head_sha: github.context.payload.pull_request.head.sha,
+      name: 'code-coverage',
+    });
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
