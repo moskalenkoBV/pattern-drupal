@@ -23,7 +23,7 @@ async function run() {
       }
     );
 
-    console.log(JSON.stringify(res.data));
+    console.log(JSON.stringify(res));
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
