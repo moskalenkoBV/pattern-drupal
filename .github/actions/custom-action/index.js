@@ -12,7 +12,7 @@ async function run() {
       auth: token,
     });
 
-    console.log(JSON.stringify(github));
+    // console.log(JSON.stringify(github));
 
     const res = await octokit.request(
       `GET /repos/{owner}/{repo}/commits/{ref}/check-suites`,
@@ -23,7 +23,7 @@ async function run() {
       }
     );
 
-    console.log(res);
+    console.log(JSON.stringify(res.data));
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
