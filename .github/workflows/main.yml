@@ -5,7 +5,7 @@ on:
   pull_request_review:
     types: [submitted]
 jobs:
-  if: '${{ "true" == "ds" }}'
+  if: ${{ "true" == "ds" }}
   test:
     runs-on: ubuntu-latest
     steps:
