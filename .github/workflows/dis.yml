@@ -1,5 +1,9 @@
 name: Dispatched
-on: [check_run]
+on:
+  check_run:
+    types: [completed]
+permissions:
+  checks: read
 
 jobs:
   testJob:
