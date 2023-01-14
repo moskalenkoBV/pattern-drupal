@@ -29,6 +29,7 @@ async function run() {
       head_sha: github.context.payload.pull_request.head.sha,
       name: 'code-coverage',
       status: 'completed',
+      conclusion: 'success',
     });
 
     // const res = await octokit.request(
