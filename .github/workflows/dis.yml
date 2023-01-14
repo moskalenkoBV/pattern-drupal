@@ -1,7 +1,7 @@
 name: Dispatched
 on:
   check_run:
-    types: [completed]
+    types: [created]
 
 jobs:
   testJob:
