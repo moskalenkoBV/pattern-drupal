@@ -1,7 +1,7 @@
 name: Dispatched
 on:
   check_run:
-    types: [created]
+    types: [requested_action]
 
 jobs:
   testJob:
