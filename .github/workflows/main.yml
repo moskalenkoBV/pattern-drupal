@@ -19,13 +19,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       approved: ${{ steps.checkApproves.outputs.data }}
-  testJob:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Sleep for 60 seconds
-        run: sleep 60s
-        shell: bash
   # build:
   #   needs: checkApproves
   #   concurrency:
