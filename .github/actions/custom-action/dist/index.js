@@ -10695,13 +10695,10 @@ async function run() {
       }
     );
 
-    await octokit.request(`POST /repos/{owner}/{repo}/check-runs`, {
+    await octokit.request(`POST /repos/{owner}/{repo}/check-suites`, {
       owner: owner,
       repo: repo,
       head_sha: github.context.payload.pull_request.head.sha,
-      name: 'code-coverage',
-      status: 'completed',
-      conclusion: 'success',
     });
 
     // const res = await octokit.request(
