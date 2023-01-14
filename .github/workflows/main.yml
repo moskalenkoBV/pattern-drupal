@@ -32,7 +32,7 @@ jobs:
     needs: checkApproves
     concurrency:
       group: ${{ github.ref }}
-      cancel-in-progress: true
+      cancel-in-progress: false
     if: ${{ needs.checkApproves.outputs.approved == 'true' && github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
