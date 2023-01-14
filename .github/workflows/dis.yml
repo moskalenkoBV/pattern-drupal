@@ -1,7 +1,5 @@
 name: Dispatched
-on:
-  check_run:
-    types: [requested_action]
+on: workflow_dispatch
 
 jobs:
   testJob:

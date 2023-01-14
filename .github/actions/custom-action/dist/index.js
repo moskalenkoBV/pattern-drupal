@@ -10695,21 +10695,15 @@ async function run() {
     //   }
     // );
 
-    const run = await octokit.request(`POST /repos/{owner}/{repo}/check-runs`, {
-      owner: owner,
-      repo: repo,
-      head_sha: github.context.payload.pull_request.head.sha,
-      name: 'Dispatched2',
-      status: 'completed',
-      conclusion: 'success',
-      actions: [
-        {
-          label: 'Run Cypress Tests',
-          description: 'Now you can run Cypress Tests',
-          identifier: 'id23',
-        },
-      ],
-    });
+    const run = await octokit.request(
+      `POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches`,
+      {
+        owner: owner,
+        repo: repo,
+        workflow_id: 'dis.yml',
+        ref: github.context.payload.pull_request.head.ref,
+      }
+    );
 
     // console.log(JSON.stringify(suite));
 
