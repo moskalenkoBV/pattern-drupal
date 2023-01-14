@@ -19,7 +19,7 @@ async function run() {
       {
         owner: owner,
         repo: repo,
-        ref: github.ref,
+        ref: github.context.payload.after,
       }
     );
 
