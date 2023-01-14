@@ -1,7 +1,7 @@
 name: Dispatched
 on:
-  pull_request:
-    types: [synchronize]
+  check_run:
+    types: [completed]
 permissions:
   checks: read
 
