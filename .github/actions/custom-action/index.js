@@ -14,25 +14,25 @@ async function run() {
 
     // console.log(JSON.stringify(github));
 
-    const res = await octokit.request(
-      `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`,
-      {
-        owner: owner,
-        repo: repo,
-        ref: github.context.payload.pull_request.head.ref,
-      }
-    );
+    // const res = await octokit.request(
+    //   `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`,
+    //   {
+    //     owner: owner,
+    //     repo: repo,
+    //     ref: github.context.payload.pull_request.head.ref,
+    //   }
+    // );
 
-    const suite = await octokit.request(
-      `POST /repos/{owner}/{repo}/check-suites`,
-      {
-        owner: owner,
-        repo: repo,
-        head_sha: github.context.payload.pull_request.head.sha,
-      }
-    );
+    // const suite = await octokit.request(
+    //   `POST /repos/{owner}/{repo}/check-suites`,
+    //   {
+    //     owner: owner,
+    //     repo: repo,
+    //     head_sha: github.context.payload.pull_request.head.sha,
+    //   }
+    // );
 
-    console.log(JSON.stringify(suite));
+    // console.log(JSON.stringify(suite));
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,

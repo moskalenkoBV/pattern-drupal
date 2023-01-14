@@ -4,6 +4,8 @@ on:
     types: [synchronize]
   pull_request_review:
     types: [submitted]
+  check_run:
+    types: [completed]
 jobs:
   checkApproves:
     if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
