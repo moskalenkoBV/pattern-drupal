@@ -1,5 +1,5 @@
 name: Dispatched
-on: [workflow_dispatch]
+on: [check_run]
 
 jobs:
   testJob:

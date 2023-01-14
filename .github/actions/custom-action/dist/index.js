@@ -10687,15 +10687,15 @@ async function run() {
     // console.log(JSON.stringify(github));
 
     const res = await octokit.request(
-      `GET /repos/{owner}/{repo}/commits/{ref}/check-suites`,
+      `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`,
       {
         owner: owner,
         repo: repo,
-        ref: github.context.payload.after,
+        ref: github.context.payload.pull_request.head.ref,
       }
     );
 
-    console.log(JSON.stringify(res.data));
+    console.log(JSON.stringify(res));
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
