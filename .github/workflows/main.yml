@@ -12,12 +12,12 @@ permission:
 
 jobs:
   test:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v2
-      env:
-        testvar: ${{ toJSON(github) }}
-      run: echo testvar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        env:
+          testvar: ${{ toJSON(github) }}
+        run: echo testvar
   # checkApproves:
   #   if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
   #   runs-on: ubuntu-latest
