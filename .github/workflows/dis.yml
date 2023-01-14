@@ -1,0 +1,11 @@
+name: Dispatched
+on: [workflow_dispatch]
+
+jobs:
+  testJob:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Sleep for 60 seconds
+        run: sleep 60s
+        shell: bash

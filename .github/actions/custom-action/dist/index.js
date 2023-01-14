@@ -10684,43 +10684,56 @@ async function run() {
       auth: token,
     });
 
+    // console.log(JSON.stringify(github));
+
     const res = await octokit.request(
-      `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
+      `GET /repos/{owner}/{repo}/commits/{ref}/check-suites`,
       {
         owner: owner,
         repo: repo,
-        pull_number: github.context.payload.pull_request.number,
+        ref: github.context.payload.after,
       }
     );
 
-    if (!res.data.length) {
-      core.setOutput('data', false);
-    } else {
-      const uniqueUserApproves = res.data.reduce((acc, item) => {
-        if (acc[item.user.id] || item.state.toLowerCase() !== 'approved')
-          return acc;
+    console.log(JSON.stringify(res.data));
 
-        acc[item.user.id] = true;
+    // const res = await octokit.request(
+    //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
+    //   {
+    //     owner: owner,
+    //     repo: repo,
+    //     pull_number: github.context.payload.pull_request.number,
+    //   }
+    // );
 
-        return acc;
-      }, {});
+    // if (!res.data.length) {
+    //   core.setOutput('data', false);
+    // } else {
+    //   const uniqueUserApproves = res.data.reduce((acc, item) => {
+    //     if (acc[item.user.id] || item.state.toLowerCase() !== 'approved')
+    //       return acc;
 
-      const uniqueApproves = Object.keys(uniqueUserApproves).length;
+    //     acc[item.user.id] = true;
 
-      if (
-        github.context.eventName === 'pull_request' &&
-        uniqueApproves >= approveCount
-      ) {
-        core.setOutput('data', true);
-      } else if (
-        github.context.eventName === 'pull_request_review' &&
-        uniqueApproves == approveCount
-      ) {
-        core.setOutput('data', true);
-      } else {
-        core.setOutput('data', false);
-      }
-    }
+    //     return acc;
+    //   }, {});
+
+    //   const uniqueApproves = Object.keys(uniqueUserApproves).length;
+
+    //   if (
+    //     github.context.eventName === 'pull_request' &&
+    //     uniqueApproves >= approveCount
+    //   ) {
+    //     core.setOutput('data', true);
+    //   } else if (
+    //     github.context.eventName === 'pull_request_review' &&
+    //     uniqueApproves == approveCount
+    //   ) {
+    //     core.setOutput('data', true);
+    //   } else {
+    //     core.setOutput('data', false);
+    //   }
+    // }
   } catch (error) {
     core.setFailed(error.message);
   }
