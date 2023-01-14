@@ -10684,7 +10684,7 @@ async function run() {
       auth: token,
     });
 
-    console.log(github);
+    console.log(JSON.stringify(github));
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
