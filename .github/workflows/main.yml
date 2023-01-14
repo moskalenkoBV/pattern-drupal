@@ -1,26 +1,27 @@
 name: CI
 on:
   pull_request:
-    types: [synchronize]
-  pull_request_review:
-    types: [submitted]
-  check_run:
-    types: [completed]
+    types: [labeled]
 jobs:
   checkApproves:
     if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - id: checkApproves
-        name: 'Check Approves'
-        uses: './.github/actions/custom-action'
-        with:
-          approve_count: 1
+      - name: Sleep for 60 seconds
+        run: echo testvar
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      approved: ${{ steps.checkApproves.outputs.data }}
+          testvar: ${{ toJSON(github) }}
+
+    #   - id: checkApproves
+    #     name: 'Check Approves'
+    #     uses: './.github/actions/custom-action'
+    #     with:
+    #       approve_count: 1
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # outputs:
+    #   approved: ${{ steps.checkApproves.outputs.data }}
   # build:
   #   needs: checkApproves
   #   concurrency:
