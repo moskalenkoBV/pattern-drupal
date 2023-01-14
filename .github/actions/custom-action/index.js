@@ -23,14 +23,14 @@ async function run() {
     //   }
     // );
 
-    // const suite = await octokit.request(
-    //   `POST /repos/{owner}/{repo}/check-suites`,
-    //   {
-    //     owner: owner,
-    //     repo: repo,
-    //     head_sha: github.context.payload.pull_request.head.sha,
-    //   }
-    // );
+    const suite = await octokit.request(
+      `POST /repos/{owner}/{repo}/check-runs`,
+      {
+        owner: owner,
+        repo: repo,
+        head_sha: github.context.payload.pull_request.head.sha,
+      }
+    );
 
     // console.log(JSON.stringify(suite));
 
