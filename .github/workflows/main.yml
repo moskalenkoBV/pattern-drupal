@@ -5,7 +5,7 @@ on:
   pull_request_review:
     types: [submitted]
 
-permission:
+permissions:
   checks: read
   statuses: read
   actions: read
