@@ -10695,11 +10695,16 @@ async function run() {
       }
     );
 
-    // await octokit.request(`POST /repos/{owner}/{repo}/check-suites`, {
-    //   owner: owner,
-    //   repo: repo,
-    //   head_sha: github.context.payload.pull_request.head.sha,
-    // });
+    const suite = await octokit.request(
+      `POST /repos/{owner}/{repo}/check-suites`,
+      {
+        owner: owner,
+        repo: repo,
+        head_sha: github.context.payload.pull_request.head.sha,
+      }
+    );
+
+    console.log(JSON.stringify(suite));
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
