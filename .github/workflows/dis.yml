@@ -1,7 +1,7 @@
 name: Dispatched
 on:
-  check_run:
-    types: [created]
+  pull_request:
+    types: [synchronize]
 permissions:
   checks: read
 
@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Sleep for 60 seconds
-        run: sleep 60s
+        run: sleep 15s
         shell: bash
