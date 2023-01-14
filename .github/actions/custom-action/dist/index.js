@@ -10687,7 +10687,7 @@ async function run() {
     // console.log(JSON.stringify(github));
 
     const res = await octokit.request(
-      `GET /repos/{owner}/{repo}/commits/{ref}/check-suites`,
+      `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`,
       {
         owner: owner,
         repo: repo,
