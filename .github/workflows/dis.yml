@@ -3,7 +3,7 @@ on:
   check_run:
     types: [completed]
 permissions:
-  check: read
+  checks: read
 
 jobs:
   testJob:
