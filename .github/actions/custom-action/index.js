@@ -23,14 +23,19 @@ async function run() {
     //   }
     // );
 
-    const suite = await octokit.request(
-      `POST /repos/{owner}/{repo}/check-runs`,
-      {
-        owner: owner,
-        repo: repo,
-        head_sha: github.context.payload.pull_request.head.sha,
-      }
-    );
+    const run = await octokit.request(`POST /repos/{owner}/{repo}/check-runs`, {
+      owner: owner,
+      repo: repo,
+      head_sha: github.context.payload.pull_request.head.sha,
+      name: 'Dispatched2',
+      status: 'completed',
+      conclusion: 'success',
+      actions: {
+        label: 'Run Cypress Tests',
+        description: 'Now you can run Cypress Tests',
+        identifier: 'id23',
+      },
+    });
 
     // console.log(JSON.stringify(suite));
 
