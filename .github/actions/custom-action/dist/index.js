@@ -10702,11 +10702,13 @@ async function run() {
       name: 'Dispatched2',
       status: 'completed',
       conclusion: 'success',
-      actions: {
-        label: 'Run Cypress Tests',
-        description: 'Now you can run Cypress Tests',
-        identifier: 'id23',
-      },
+      actions: [
+        {
+          label: 'Run Cypress Tests',
+          description: 'Now you can run Cypress Tests',
+          identifier: 'id23',
+        },
+      ],
     });
 
     // console.log(JSON.stringify(suite));
