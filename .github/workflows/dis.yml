@@ -1,9 +1,7 @@
 name: Dispatched
 on:
   check_run:
-    types: [completed]
-permissions:
-  checks: read
+    types: [created]
 
 jobs:
   testJob:
@@ -11,5 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Sleep for 60 seconds
-        run: sleep 60s
+        run: sleep 15s
         shell: bash
