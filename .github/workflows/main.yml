@@ -3,38 +3,50 @@ on:
   pull_request:
     types: [synchronize]
   pull_request_review:
-    types: [submited]
+    types: [submitted]
+
+permission:
+  checks: read
+  statuses: read
+  actions: read
 
 jobs:
-  checkApproves:
-    if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - id: checkApproves
-        name: 'Check Approves'
-        uses: './.github/actions/custom-action'
-        with:
-          approve_count: 1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      approved: ${{ steps.checkApproves.outputs.data }}
-  build:
-    needs: checkApproves
-    if: ${{ needs.checkApproves.outputs.approved == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+  test:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+      env:
+        testvar: ${{ toJSON(github) }}
+      run: echo testvar
+  # checkApproves:
+  #   if: github.event_name == 'pull_request' || github.event.review.state == 'approved'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - id: checkApproves
+  #       name: 'Check Approves'
+  #       uses: './.github/actions/custom-action'
+  #       with:
+  #         approve_count: 1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   outputs:
+  #     approved: ${{ steps.checkApproves.outputs.data }}
+  # build:
+  #   needs: checkApproves
+  #   if: ${{ needs.checkApproves.outputs.approved == 'true' }}
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        env:
-          test: '${{toJSON(github)}}'
-        run: echo 'dd'
+  #     # Runs a single command using the runners shell
+  #     - name: Run a one-line script
+  #       env:
+  #         test: '${{toJSON(github)}}'
+  #       run: echo 'dd'
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+  #     # Runs a set of commands using the runners shell
+  #     - name: Run a multi-line script
+  #       run: |
+  #         echo Add other actions to build,
+  #         echo test, and deploy your project.
