@@ -47,6 +47,17 @@ async function run() {
 
     // console.log(JSON.stringify(res));
 
+    const labels = await octokit.request(
+      `GET /repos/{owner}/{repo}/issues/{issue_number}/labels`,
+      {
+        owner: owner,
+        repo: repo,
+        issue_number: github.context.payload.number,
+      }
+    );
+
+    console.log(JSON.stringify(labels));
+
     const res = await octokit.request(
       `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
       {
