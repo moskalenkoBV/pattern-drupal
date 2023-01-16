@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const exec = require('@actions/exec');
 const { Octokit } = require('@octokit/core');
 
 async function run() {
@@ -23,6 +24,8 @@ async function run() {
         conclusion: 'success',
       }
     );
+
+    console.log(newCheckRun);
 
     // console.log(JSON.stringify(github));
 
