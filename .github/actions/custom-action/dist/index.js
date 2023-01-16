@@ -10684,6 +10684,18 @@ async function run() {
       auth: token,
     });
 
+    const newCheckRun = await octokit.request(
+      `POST /repos/{owner}/{repo}/check-runs`,
+      {
+        owner: owner,
+        repo: repo,
+        name: 'Cypress Tests',
+        head_sha: github.context.payload.pull_request.head.ref,
+        status: 'completed',
+        conclusion: 'success',
+      }
+    );
+
     // console.log(JSON.stringify(github));
 
     // const res = await octokit.request(
@@ -10695,26 +10707,26 @@ async function run() {
     //   }
     // );
 
-    const run = await octokit.request(
-      `POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches`,
-      {
-        owner: owner,
-        repo: repo,
-        workflow_id: 'dis.yml',
-        ref: github.context.payload.pull_request.head.ref,
-      }
-    );
+    // const run = await octokit.request(
+    //   `POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches`,
+    //   {
+    //     owner: owner,
+    //     repo: repo,
+    //     workflow_id: 'dis.yml',
+    //     ref: github.context.payload.pull_request.head.ref,
+    //   }
+    // );
 
-    const res = await octokit.request(
-      `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`,
-      {
-        owner: owner,
-        repo: repo,
-        ref: github.context.payload.pull_request.head.ref,
-      }
-    );
+    // const res = await octokit.request(
+    //   `GET /repos/{owner}/{repo}/commits/{ref}/check-runs`,
+    //   {
+    //     owner: owner,
+    //     repo: repo,
+    //     ref: github.context.payload.pull_request.head.ref,
+    //   }
+    // );
 
-    console.log(JSON.stringify(res));
+    // console.log(JSON.stringify(res));
 
     // const res = await octokit.request(
     //   `GET /repos/{owner}/{repo}/pulls/{pull_number}/reviews?per_page=100`,
