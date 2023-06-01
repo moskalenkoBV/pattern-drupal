@@ -1,19 +1,30 @@
 name: CI
 on:
   pull_request:
-    types: [labeled, open]
+    branches:
+      - 'master'
 jobs:
   prepareTests:
     runs-on: ubuntu-latest
+    # steps:
+    #   - uses: actions/checkout@v2
+    #   - id: checkApproves
+    #     name: 'Check Approves'
+    #     uses: './.github/actions/custom-action'
+    #     with:
+    #       approve_count: 2
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - id: checkApproves
-        name: 'Check Approves'
-        uses: './.github/actions/custom-action'
-        with:
-          approve_count: 2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'install'
+        run: 'npm install'
+      - name: 'move'
+        run: 'npm run buildAssets'
+      - name: 'checkFiles'
+        run: 'npm run checkImages'
+      - name: 'other'
+        run: echo 'dd'
   # build:
   #   needs: checkApproves
   #   concurrency:

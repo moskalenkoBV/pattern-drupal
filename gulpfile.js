@@ -4,7 +4,7 @@ const gulpif = require('gulp-if');
 const clean = require('gulp-clean');
 const browserSync = require('browser-sync');
 const shell = require('gulp-shell');
-const sass = require('gulp-sass');
+// const sass = require('gulp-sass');
 const postCSS = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const sassGlob = require('gulp-sass-glob');
@@ -56,7 +56,7 @@ const tasks = {
         .src(params.src)
         .pipe(sourcemaps.init())
         .pipe(sassGlob())
-        .pipe(sass().on('error', sass.logError))
+        // .pipe(sass().on('error', sass.logError))
         .pipe(postCSS([
           autoprefixer({
             browsers: [
@@ -321,7 +321,7 @@ const buildAssets = gulp.series(
       newer: true,
     }),
   ),
-  tasks.compileScss.bind(null),
+  // tasks.compileScss.bind(null),
 );
 
 /* Tasks For Yarn */
